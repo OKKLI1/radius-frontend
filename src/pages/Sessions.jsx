@@ -1,11 +1,7 @@
 import { useEffect, useState } from 'react'
 import api from '../api/client'
 
-const C = {
-  bg: '#0d1117', surface: '#161b22', border: '#30363d',
-  accent: '#00d4aa', text: '#e6edf3', muted: '#8b949e',
-  green: '#3fb950', danger: '#f85149',
-}
+import { C } from '../theme'
 
 export default function Sessions() {
   const [active, setActive] = useState([])

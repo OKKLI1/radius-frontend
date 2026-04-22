@@ -10,6 +10,10 @@ import NAS from './pages/NAS'
 import Sessions from './pages/Sessions'
 import Logs from './pages/Logs'
 import Reports from './pages/Reports'
+import BatchUsers from './pages/BatchUsers'
+import Profiles from './pages/Profiles'
+import Vouchers from './pages/Vouchers'
+import Config from './pages/Config'
 
 export default function App() {
   return (
@@ -28,6 +32,10 @@ export default function App() {
                   <Route path="/sesiones"  element={<Sessions />} />
                   <Route path="/logs"      element={<Logs />} />
                   <Route path="/reportes"  element={<Reports />} />
+                  <Route path="/batch" element={<BatchUsers />} />
+                  <Route path="/perfiles" element={<Profiles />} />
+                  <Route path="/vouchers" element={<Vouchers />} />
+                  <Route path="/config" element={<Config />} />
                   <Route path="*"          element={<Navigate to="/" replace />} />
                 </Routes>
               </Layout>

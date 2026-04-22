@@ -1,12 +1,7 @@
 import { useEffect, useState } from 'react'
 import api from '../api/client'
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from 'recharts'
-
-const C = {
-  bg: '#0d1117', surface: '#161b22', border: '#30363d',
-  accent: '#00d4aa', text: '#e6edf3', muted: '#8b949e',
-  green: '#3fb950', danger: '#f85149', warn: '#e3b341',
-}
+import { C } from '../theme'
 
 function StatCard({ icon, label, value, sub, color }) {
   return (

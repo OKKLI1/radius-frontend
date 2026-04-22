@@ -1,12 +1,7 @@
 import { useEffect, useState } from 'react'
 import api from '../api/client'
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid, PieChart, Pie, Cell, Legend } from 'recharts'
-
-const C = {
-  bg: '#0d1117', surface: '#161b22', border: '#30363d',
-  accent: '#00d4aa', text: '#e6edf3', muted: '#8b949e',
-  green: '#3fb950', warn: '#e3b341', danger: '#f85149',
-}
+import { C } from '../theme'
 
 const COLORS = [C.accent, C.green, C.warn, '#58a6ff', '#bc8cff', '#ff7b72']
 

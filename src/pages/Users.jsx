@@ -1,12 +1,10 @@
 import { useEffect, useState } from 'react'
 import api from '../api/client'
 
-const C = {
-  bg: '#0d1117', surface: '#161b22', border: '#30363d',
-  accent: '#00d4aa', text: '#e6edf3', muted: '#8b949e',
-  green: '#3fb950', danger: '#f85149',
-}
 
+
+
+import { C } from '../theme'
 const EMPTY = { username: '', password: '', group: '', expiry: '', simultaneous_use: 1 }
 
 function Badge({ active }) {
@@ -44,24 +42,34 @@ export default function Users() {
   const [users, setUsers] = useState([])
   const [search, setSearch] = useState('')
   const [loading, setLoading] = useState(true)
-  const [modal, setModal] = useState(null) // 'create' | 'edit'
+  const [modal, setModal] = useState(null)
   const [form, setForm] = useState(EMPTY)
   const [saving, setSaving] = useState(false)
   const [msg, setMsg] = useState('')
+  const [groups, setGroups] = useState([])   // ← AQUÍ adentro
 
   const load = () => {
     setLoading(true)
     api.get('/users').then(r => setUsers(r.data)).finally(() => setLoading(false))
   }
 
-  useEffect(() => { load() }, [])
+  useEffect(() => {
+    load()
+    api.get('/groups').then(r => setGroups(r.data))
+  }, [])
 
-  const filtered = users.filter(u =>
-    u.username?.toLowerCase().includes(search.toLowerCase()) ||
-    u.grupo?.toLowerCase().includes(search.toLowerCase())
-  )
+  useEffect(() => {
+  load()
+  api.get('/groups').then(r => setGroups(r.data))
+}, [])
 
-  const openCreate = () => { setForm(EMPTY); setModal('create') }
+// ← AGREGAR AQUÍ
+const filtered = users.filter(u =>
+  u.username?.toLowerCase().includes(search.toLowerCase()) ||
+  u.grupo?.toLowerCase().includes(search.toLowerCase())
+)
+
+  function openCreate() { setForm(EMPTY); setModal('create') }
   const openEdit = (u) => { setForm({ username: u.username, password: '', group: u.grupo || '', expiry: u.expiry || '', simultaneous_use: u.simultaneous_use || 1 }); setModal('edit') }
   const closeModal = () => { setModal(null); setMsg('') }
 
@@ -161,7 +169,12 @@ export default function Users() {
             <input style={inputStyle} type="password" value={form.password} onChange={e => setForm({ ...form, password: e.target.value })} placeholder="••••••••" />
           </Field>
           <Field label="Grupo">
-            <input style={inputStyle} value={form.group} onChange={e => setForm({ ...form, group: e.target.value })} placeholder="empleados, visitantes, admin..." />
+            <select style={inputStyle} value={form.group} onChange={e => setForm({ ...form, group: e.target.value })}>
+              <option value="">— Sin grupo —</option>
+              {groups.map(g => (
+                <option key={g.groupname} value={g.groupname}>{g.groupname}</option>
+              ))}
+            </select>
           </Field>
           <Field label="Fecha de vencimiento">
             <input style={inputStyle} type="date" value={form.expiry} onChange={e => setForm({ ...form, expiry: e.target.value })} />

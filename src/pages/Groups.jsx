@@ -1,11 +1,6 @@
 import { useEffect, useState } from 'react'
 import api from '../api/client'
-
-const C = {
-  bg: '#0d1117', surface: '#161b22', border: '#30363d',
-  accent: '#00d4aa', text: '#e6edf3', muted: '#8b949e',
-  green: '#3fb950', danger: '#f85149',
-}
+import { C } from '../theme'
 
 const EMPTY = { groupname: '', max_bandwidth_down: '', max_bandwidth_up: '', session_timeout: '', idle_timeout: '' }
 const inputStyle = { background: C.bg, border: `1px solid ${C.border}`, color: C.text, padding: '9px 12px', borderRadius: 7, fontSize: 13, fontFamily: "'Sora', sans-serif", width: '100%', boxSizing: 'border-box', outline: 'none' }

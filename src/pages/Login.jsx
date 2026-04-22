@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
+import { C, brand, inputStyle, btnPrimary } from '../theme'
 
 export default function Login() {
   const { login } = useAuth()
@@ -25,32 +26,44 @@ export default function Login() {
 
   return (
     <div style={styles.bg}>
+      {/* Fondo decorativo */}
+      <div style={styles.bgBlob1} />
+      <div style={styles.bgBlob2} />
+
       <div style={styles.card}>
-        {/* Logo / título */}
+        {/* Logo */}
         <div style={styles.logoWrap}>
           <div style={styles.logoIcon}>⬡</div>
           <div>
-            <div style={styles.logoTitle}>RADIUS Manager</div>
-            <div style={styles.logoSub}>Panel de Administración</div>
+            <div style={styles.logoTitle}>{brand.name}</div>
+            <div style={styles.logoSub}>{brand.tagline}</div>
           </div>
         </div>
 
-        <form onSubmit={handleSubmit} style={styles.form}>
-          <div style={styles.field}>
+        <div style={{ fontSize: 20, fontWeight: 700, color: C.text, marginBottom: 4 }}>
+          Iniciar sesión
+        </div>
+        <div style={{ fontSize: 13, color: C.muted, marginBottom: 24 }}>
+          Ingresa tus credenciales de administrador
+        </div>
+
+        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
             <label style={styles.label}>Usuario</label>
             <input
-              style={styles.input}
+              style={inputStyle}
               type="text"
               placeholder="admin"
               value={form.username}
               onChange={e => setForm({ ...form, username: e.target.value })}
               required
+              autoFocus
             />
           </div>
-          <div style={styles.field}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
             <label style={styles.label}>Contraseña</label>
             <input
-              style={styles.input}
+              style={inputStyle}
               type="password"
               placeholder="••••••••"
               value={form.password}
@@ -59,64 +72,77 @@ export default function Login() {
             />
           </div>
 
-          {error && <div style={styles.error}>{error}</div>}
+          {error && (
+            <div style={styles.error}>{error}</div>
+          )}
 
-          <button style={{ ...styles.btn, opacity: loading ? 0.7 : 1 }} type="submit" disabled={loading}>
-            {loading ? 'Iniciando sesión...' : 'Iniciar sesión'}
+          <button
+            style={{ ...btnPrimary, padding: '12px', opacity: loading ? 0.7 : 1, marginTop: 4, background: C.gradientAccent }}
+            type="submit"
+            disabled={loading}
+          >
+            {loading ? 'Iniciando sesión...' : 'Iniciar sesión →'}
           </button>
         </form>
 
         <div style={styles.footer}>
-          FreeRADIUS 3.2 · Ubuntu 24.04 LTS
+          FreeRADIUS 3.2 · Ubuntu 24.04 LTS · {brand.name} v{brand.version}
         </div>
       </div>
     </div>
   )
 }
 
-const C = {
-  bg: '#0d1117', surface: '#161b22', border: '#30363d',
-  accent: '#00d4aa', text: '#e6edf3', muted: '#8b949e', danger: '#f85149',
-}
-
 const styles = {
   bg: {
-    minHeight: '100vh', background: C.bg, display: 'flex',
-    alignItems: 'center', justifyContent: 'center',
+    minHeight: '100vh',
+    background: C.bg,
+    display: 'flex', alignItems: 'center', justifyContent: 'center',
     fontFamily: "'Sora', sans-serif",
+    position: 'relative', overflow: 'hidden',
+  },
+  bgBlob1: {
+    position: 'absolute', width: 400, height: 400, borderRadius: '50%',
+    background: `radial-gradient(circle, ${C.accentMid}, transparent 70%)`,
+    top: -100, right: -100, pointerEvents: 'none',
+  },
+  bgBlob2: {
+    position: 'absolute', width: 300, height: 300, borderRadius: '50%',
+    background: `radial-gradient(circle, #6366f120, transparent 70%)`,
+    bottom: -80, left: -80, pointerEvents: 'none',
   },
   card: {
-    background: C.surface, border: `1px solid ${C.border}`,
-    borderRadius: 16, padding: '40px 36px', width: 380,
-    boxShadow: `0 0 60px #00d4aa15`,
+    background: C.surface,
+    border: `1px solid ${C.border}`,
+    borderRadius: 16,
+    padding: '36px 32px',
+    width: 400,
+    boxShadow: `0 20px 60px #00000040, 0 0 0 1px ${C.border}`,
+    position: 'relative', zIndex: 1,
   },
   logoWrap: {
-    display: 'flex', alignItems: 'center', gap: 14, marginBottom: 32,
+    display: 'flex', alignItems: 'center', gap: 12, marginBottom: 28,
   },
   logoIcon: {
-    fontSize: 36, color: C.accent, lineHeight: 1,
-    filter: `drop-shadow(0 0 12px ${C.accent})`,
+    width: 40, height: 40, borderRadius: 10,
+    background: C.gradientAccent,
+    display: 'flex', alignItems: 'center', justifyContent: 'center',
+    color: '#fff', fontSize: 20,
+    boxShadow: `0 4px 16px ${C.accentMid}`,
   },
-  logoTitle: { fontSize: 20, fontWeight: 700, color: C.text },
-  logoSub: { fontSize: 12, color: C.muted, marginTop: 2 },
-  form: { display: 'flex', flexDirection: 'column', gap: 16 },
-  field: { display: 'flex', flexDirection: 'column', gap: 6 },
-  label: { fontSize: 12, color: C.muted, fontWeight: 600, textTransform: 'uppercase', letterSpacing: 1 },
-  input: {
-    background: C.bg, border: `1px solid ${C.border}`, color: C.text,
-    padding: '10px 14px', borderRadius: 8, fontSize: 14,
-    fontFamily: "'Sora', sans-serif", outline: 'none',
-    transition: 'border-color 0.2s',
+  logoTitle: {
+    fontSize: 18, fontWeight: 700, color: C.text,
+  },
+  logoSub: {
+    fontSize: 11, color: C.muted,
+  },
+  label: {
+    fontSize: 12, color: C.textSoft, fontWeight: 600,
+    textTransform: 'uppercase', letterSpacing: 1,
   },
   error: {
-    background: `${C.danger}22`, border: `1px solid ${C.danger}55`,
-    color: C.danger, padding: '8px 12px', borderRadius: 6, fontSize: 13,
-  },
-  btn: {
-    background: C.accent, color: '#000', border: 'none',
-    padding: '12px', borderRadius: 8, fontWeight: 700, fontSize: 14,
-    cursor: 'pointer', fontFamily: "'Sora', sans-serif",
-    marginTop: 4, transition: 'opacity 0.2s',
+    background: `${C.danger}18`, border: `1px solid ${C.danger}44`,
+    color: C.danger, padding: '10px 14px', borderRadius: 8, fontSize: 13,
   },
   footer: {
     textAlign: 'center', fontSize: 11, color: C.muted, marginTop: 24,
