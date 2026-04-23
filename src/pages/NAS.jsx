@@ -14,6 +14,12 @@ function Field({ label, children }) {
   )
 }
 
+function maskSecret(secret) {
+  if (!secret) return '-'
+  if (secret.length <= 2) return '*'.repeat(secret.length)
+  return `${'*'.repeat(secret.length - 2)}${secret.slice(-2)}`
+}
+
 export default function NAS() {
   const [list, setList] = useState([])
   const [loading, setLoading] = useState(true)
@@ -38,7 +44,8 @@ export default function NAS() {
     try {
       if (modal === 'create') await api.post('/nas', form)
       else {
-        const { nasname, ...payload } = form
+        const payload = { ...form }
+        delete payload.nasname
         await api.put(`/nas/${modal}`, payload)
       }
       load(); closeModal()
@@ -83,7 +90,7 @@ export default function NAS() {
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: 20, flexWrap: 'wrap' }}>
                 <span style={{ background: `${C.accent}18`, color: C.accent, border: `1px solid ${C.accent}33`, padding: '3px 12px', borderRadius: 20, fontSize: 12 }}>{n.type}</span>
-                <span style={{ fontFamily: 'monospace', fontSize: 12, color: C.muted }}>secret: {n.secret}</span>
+                <span style={{ fontFamily: 'monospace', fontSize: 12, color: C.muted }}>secret: {maskSecret(n.secret)}</span>
                 {n.description && <span style={{ fontSize: 12, color: C.muted }}>{n.description}</span>}
                 <div style={{ marginLeft: 'auto', display: 'flex', gap: 8 }}>
                   <button onClick={() => openEdit(n)} style={styles.btnSm}>Editar</button>

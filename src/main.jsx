@@ -1,6 +1,7 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App.jsx'
+import { C } from './theme'
 
 const style = document.createElement('style')
 style.textContent = `
@@ -13,26 +14,36 @@ style.textContent = `
   }
 
   body {
-    background: #1a1d23;
-    color: #e8eaf0;
+    background: var(--ax-bg, ${C.bg});
+    color: var(--ax-text, ${C.text});
     font-family: 'Sora', sans-serif;
     -webkit-font-smoothing: antialiased;
   }
 
+  :root {
+    --ax-radius-sm: 10px;
+    --ax-radius-md: 14px;
+    --ax-radius-lg: 16px;
+  }
+
   ::-webkit-scrollbar { width: 5px; height: 5px; }
-  ::-webkit-scrollbar-track { background: #1a1d23; }
-  ::-webkit-scrollbar-thumb { background: #353a47; border-radius: 3px; }
+  ::-webkit-scrollbar-track { background: var(--ax-bg, ${C.bg}); }
+  ::-webkit-scrollbar-thumb { background: var(--ax-border, ${C.border}); border-radius: 6px; }
   ::-webkit-scrollbar-thumb:hover { background: #4f5668; }
 
   input, select, textarea {
     transition: border-color 0.15s, box-shadow 0.15s;
+    border-radius: var(--ax-radius-sm);
   }
   input:focus, select:focus, textarea:focus {
-    border-color: #4f8ef7 !important;
-    box-shadow: 0 0 0 3px #4f8ef715 !important;
+    border-color: var(--ax-accent, ${C.accent}) !important;
+    box-shadow: 0 0 0 3px var(--ax-accent-dim, ${C.accentDim}) !important;
   }
 
-  button { transition: opacity 0.15s, transform 0.1s; }
+  button {
+    transition: opacity 0.15s, transform 0.1s;
+    border-radius: var(--ax-radius-sm);
+  }
   button:hover:not(:disabled) { opacity: 0.88; }
   button:active:not(:disabled) { transform: scale(0.98); }
 

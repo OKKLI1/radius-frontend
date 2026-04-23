@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 120" role="img" aria-label="AxioRadius">
+  <defs>
+    <linearGradient id="cg1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4f8ef7"/>
+      <stop offset="100%" style="stop-color:#1a3a6b"/>
+    </linearGradient>
+    <linearGradient id="hg1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#8a9bb5"/>
+      <stop offset="100%" style="stop-color:#6b7d96"/>
+    </linearGradient>
+    <linearGradient id="tg1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#c8d4e8"/>
+      <stop offset="100%" style="stop-color:#a0b0c8"/>
+    </linearGradient>
+    <filter id="glow1"><feGaussianBlur stdDeviation="2" result="cb"/><feMerge><feMergeNode in="cb"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <clipPath id="rh1"><rect x="10" y="0" width="50" height="120"/></clipPath>
+    <clipPath id="lh1"><rect x="0" y="0" width="42" height="120"/></clipPath>
+  </defs>
+  <circle cx="52" cy="60" r="42" fill="url(#hg1)" clip-path="url(#lh1)" opacity="0.9"/>
+  <circle cx="52" cy="60" r="42" fill="url(#cg1)" clip-path="url(#rh1)"/>
+  <circle cx="52" cy="60" r="28" fill="#1a1d23"/>
+  <path d="M 36 60 Q 44 46 52 60 Q 60 74 68 60" stroke="#4f8ef7" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.9" filter="url(#glow1)"/>
+  <path d="M 30 60 Q 41 38 52 60 Q 63 82 74 60" stroke="#4f8ef7" stroke-width="1.8" fill="none" stroke-linecap="round" opacity="0.5"/>
+  <circle cx="52" cy="60" r="4" fill="#4f8ef7" filter="url(#glow1)"/>
+  <circle cx="52" cy="18" r="4" fill="#4f8ef7" filter="url(#glow1)"/><circle cx="52" cy="18" r="2" fill="#1a1d23"/>
+  <circle cx="52" cy="102" r="4" fill="#4f8ef7" filter="url(#glow1)"/><circle cx="52" cy="102" r="2" fill="#1a1d23"/>
+  <circle cx="10" cy="60" r="4" fill="#8a9bb5"/><circle cx="10" cy="60" r="2" fill="#1a1d23"/>
+  <line x1="52" y1="18" x2="52" y2="32" stroke="#4f8ef7" stroke-width="2" opacity="0.7"/>
+  <line x1="52" y1="88" x2="52" y2="102" stroke="#4f8ef7" stroke-width="2" opacity="0.7"/>
+  <line x1="10" y1="60" x2="24" y2="60" stroke="#8a9bb5" stroke-width="2" opacity="0.7"/>
+  <line x1="93" y1="45" x2="89" y2="47" stroke="#4f8ef7" stroke-width="1.5" opacity="0.6"/>
+  <line x1="93" y1="75" x2="89" y2="73" stroke="#4f8ef7" stroke-width="1.5" opacity="0.6"/>
+  <text x="108" y="78" font-family="'Arial Black', Arial, sans-serif" font-size="52" font-weight="900" letter-spacing="-1" fill="url(#tg1)">AXIO</text>
+  <text x="263" y="78" font-family="'Arial Black', Arial, sans-serif" font-size="52" font-weight="900" letter-spacing="-1" fill="url(#cg1)">RADIUS</text>
+  <line x1="108" y1="84" x2="508" y2="84" stroke="#2a3547" stroke-width="0.8"/>
+  <text x="109" y="97" font-family="Arial, sans-serif" font-size="11" font-weight="400" letter-spacing="3.5" fill="#5a6a80">NETWORK ACCESS MANAGEMENT</text>
+</svg>

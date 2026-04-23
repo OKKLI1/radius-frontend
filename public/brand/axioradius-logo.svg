@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="420" height="96" viewBox="0 0 420 96" role="img" aria-label="AxioRadius">
+  <defs>
+    <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#4f8ef7" />
+      <stop offset="100%" stop-color="#1f4c73" />
+    </linearGradient>
+  </defs>
+
+  <rect width="420" height="96" fill="none" />
+
+  <g transform="translate(6,8)">
+    <circle cx="40" cy="40" r="34" fill="#8c9098" />
+    <path d="M40,6 A34,34 0 0 1 40,74 Z" fill="url(#g1)" />
+
+    <line x1="24" y1="8" x2="24" y2="70" stroke="#8c9098" stroke-width="6" stroke-linecap="round" />
+    <circle cx="24" cy="8" r="7" fill="#8c9098" />
+    <circle cx="24" cy="40" r="7" fill="#e8eaf0" />
+    <circle cx="24" cy="70" r="7" fill="#8c9098" />
+
+    <line x1="50" y1="22" x2="50" y2="76" stroke="#e8eaf0" stroke-width="5" stroke-linecap="round" />
+    <circle cx="50" cy="22" r="6" fill="#1f4c73" />
+    <circle cx="50" cy="76" r="7" fill="#1f4c73" />
+  </g>
+
+  <g transform="translate(94,18)" fill="#8c9098">
+    <path d="M0 60L20 0h10l20 60h-11l-4-12H15L11 60H0zm18-22h14L25 16 18 38z"/>
+    <path d="M55 60l16-22-14-20h12l9 13 9-13h12L85 38l16 22H89L79 46 69 60H55z"/>
+    <rect x="108" y="18" width="10" height="42" rx="2"/>
+    <circle cx="113" cy="8" r="6"/>
+    <circle cx="146" cy="38" r="22" fill="#8c9098"/>
+    <circle cx="146" cy="38" r="11" fill="#1f4c73"/>
+  </g>
+
+  <rect x="267" y="8" width="24" height="80" fill="#8c9098" />
+  <rect x="291" y="8" width="123" height="80" fill="#1f4c73" />
+</svg>

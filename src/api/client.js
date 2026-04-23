@@ -15,8 +15,12 @@ api.interceptors.response.use(
   (err) => {
     const isLoginRoute = err.config?.url?.includes('/auth/login')
     if (err.response?.status === 401 && !isLoginRoute) {
-      const token = localStorage.getItem('token')
-      if (!token) window.location.href = '/login'
+      const currentPath = window.location.pathname + window.location.search + window.location.hash
+      if (currentPath && currentPath !== '/login') {
+        localStorage.setItem('axio_last_route', currentPath)
+      }
+      localStorage.removeItem('token')
+      window.location.href = '/login'
     }
     return Promise.reject(err)
   }
